@@ -44,6 +44,12 @@ const ESPACOS = [
   { id: 'b22', tipo: 'bancada', local: 'barracao', rotulo: 'Bancada 22' },
   { id: 'b23', tipo: 'bancada', local: 'barracao', rotulo: 'Bancada 23' },
   { id: 'b24', tipo: 'bancada', local: 'barracao', rotulo: 'Bancada 24' },
+ { id: 'b26', tipo: 'bancada', local: 'barracao', rotulo: 'Bancada 25' },
+  { id: 'b26', tipo: 'bancada', local: 'barracao', rotulo: 'Bancada 26' },
+  { id: 'b27', tipo: 'bancada', local: 'barracao', rotulo: 'Bancada 27' },
+  { id: 'b28', tipo: 'bancada', local: 'barracao', rotulo: 'Bancada 28' },
+  { id: 'b29', tipo: 'bancada', local: 'barracao', rotulo: 'Bancada 29' },
+ { id: 'b30', tipo: 'bancada', local: 'barracao', rotulo: 'Bancada 30' },
  
 
   { id: 't01', tipo: 'sala', local: 'predio', andar: 'terreo', rotulo: 'Sala 01' },
@@ -298,7 +304,7 @@ function desenharPredio() {
   );
 
   const vao = planta.salas.vao;
-  const topo = 112;
+  const topo = 140;
   const larguraTotal = interior.larguraTotal;
   const xEsquerda = interior.x;
   const larguraColuna = (larguraTotal - vao) / 2;
@@ -338,7 +344,7 @@ function desenharPredio() {
     posicoesServicos.push({
   item: { rotulo: 'Rampa', nota: 'acesso ao segundo andar' },
   x: xEsquerda + (larguraTotal - 190) / 2,
-  y: topo - alturaServico - 8,
+y: planta.parede.y + 8,
   w: 190,
   h: alturaServico
 });
