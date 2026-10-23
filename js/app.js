@@ -336,12 +336,12 @@ function desenharPredio() {
     });
 
     posicoesServicos.push({
-      item: { rotulo: 'Rampa', nota: 'acesso ao segundo andar' },
-      x: xEsquerda + (larguraTotal - 190) / 2,
-      y: planta.parede.y + 8,
-      w: 190,
-      h: alturaServico
-    });
+  item: { rotulo: 'Rampa', nota: 'acesso ao segundo andar' },
+  x: xEsquerda + (larguraTotal - 190) / 2,
+  y: topo - alturaServico - 8,
+  w: 190,
+  h: alturaServico
+});
 
     altura = topo + 3 * passoSala + alturaServico + 125;
   } else {
