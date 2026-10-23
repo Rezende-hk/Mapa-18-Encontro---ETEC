@@ -505,8 +505,8 @@ function textoVertical(texto, x, y, classe) {
 
 function setaDeEntrada(x, y) {
   return `<g class="entrada-marcador">
-    <text class="planta__seta" x="${x}" y="${y}" text-anchor="middle">ENTRADA</text>
-    <path class="planta__seta-linha" d="M ${x - 16} ${y + 10} L ${x} ${y + 22} L ${x + 16} ${y + 10}"/>
+    <path class="planta__seta-linha" d="M ${x - 16} ${y} L ${x} ${y + 12} L ${x + 16} ${y}"/>
+    <text class="planta__seta" x="${x}" y="${y + 38}" text-anchor="middle">ENTRADA</text>
   </g>`;
 }
 
