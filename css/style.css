@@ -1,0 +1,764 @@
+/* ==========================================================================
+   FEIRA DE PROJETOS — Etec de Vargem Grande do Sul
+   style.css
+
+   Organização do arquivo:
+   1. Cores e medidas (tokens)
+   2. Base e tipografia
+   3. Cabeçalho e busca
+   4. Estrutura da página
+   5. Mapa
+   6. Legenda
+   7. Painel de informações
+   8. Rodapé
+   9. Telas maiores (desktop)
+   ========================================================================== */
+
+/* 1. Cores e medidas ------------------------------------------------------ */
+:root {
+  --papel: #f4f0e8;
+  --papel-claro: #fbf8f2;
+  --tinta: #191510;
+  --tinta-media: #4d4639;
+  --tinta-fraca: #837b6b;
+  --linha: #d5cdbc;
+  --linha-forte: #b9af9b;
+
+  --acento: #bf4130;
+  --acento-escuro: #96301f;
+
+  --barracao: #eadfc6;
+  --barracao-linha: #b8a683;
+  --predio: #d6dfe8;
+  --predio-linha: #8ea4b8;
+  --quadra: #d8e2d0;
+  --quadra-linha: #9db292;
+  --externo: #e9e3d4;
+
+  --serif: Georgia, "Iowan Old Style", "Palatino Linotype", "Times New Roman", serif;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  --largura: 1180px;
+  --raio: 3px;
+}
+
+/* 2. Base e tipografia --------------------------------------------------- */
+[hidden] {
+  display: none !important;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--papel);
+  color: var(--tinta);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.9em;
+  color: var(--tinta-media);
+}
+
+/* 3. Cabeçalho e busca --------------------------------------------------- */
+.cabecalho {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--papel);
+  border-bottom: 1px solid var(--linha-forte);
+}
+
+.cabecalho__interno {
+  max-width: var(--largura);
+  margin: 0 auto;
+  padding: 14px 18px 12px;
+  display: grid;
+  gap: 12px;
+}
+
+.marca__sobre {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--tinta-fraca);
+}
+
+.marca__titulo {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin-top: 2px;
+}
+
+.busca {
+  position: relative;
+}
+
+.busca__rotulo {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.busca__campo {
+  width: 100%;
+  padding: 11px 14px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--tinta);
+  background: var(--papel-claro);
+  border: 1px solid var(--linha-forte);
+  border-radius: var(--raio);
+  outline: none;
+}
+
+.busca__campo::placeholder {
+  color: var(--tinta-fraca);
+}
+
+.busca__campo:focus {
+  border-color: var(--acento);
+}
+
+.busca__resultados {
+  position: absolute;
+  z-index: 30;
+  left: 0;
+  right: 0;
+  top: calc(100% + 4px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-height: 60vh;
+  overflow-y: auto;
+  background: var(--papel-claro);
+  border: 1px solid var(--linha-forte);
+  border-radius: var(--raio);
+}
+
+.busca__resultados li + li {
+  border-top: 1px solid var(--linha);
+}
+
+.busca__item {
+  display: block;
+  width: 100%;
+  padding: 10px 14px;
+  text-align: left;
+  background: none;
+  border: 0;
+}
+
+.busca__item:hover,
+.busca__item:focus-visible {
+  background: #efe9dc;
+}
+
+.busca__item strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.busca__item small {
+  display: block;
+  margin-top: 2px;
+  font-size: 12px;
+  color: var(--tinta-fraca);
+}
+
+.busca__vazio {
+  padding: 12px 14px;
+  font-size: 13px;
+  color: var(--tinta-fraca);
+}
+
+/* 4. Estrutura da página ------------------------------------------------- */
+.pagina {
+  max-width: var(--largura);
+  margin: 0 auto;
+  padding: 16px 18px 40px;
+}
+
+.trilha {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  letter-spacing: 0.02em;
+  color: var(--tinta-fraca);
+  margin-bottom: 12px;
+}
+
+.trilha__elo {
+  border: 0;
+  background: none;
+  padding: 0;
+  color: var(--acento);
+  font-size: 12.5px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.trilha__atual {
+  color: var(--tinta-media);
+  font-weight: 600;
+}
+
+.trilha__seta {
+  color: var(--linha-forte);
+}
+
+.conteudo {
+  display: grid;
+  gap: 18px;
+}
+
+/* 5. Mapa ---------------------------------------------------------------- */
+.mapa {
+  background: var(--papel-claro);
+  border: 1px solid var(--linha-forte);
+  border-radius: var(--raio);
+  overflow: hidden;
+}
+
+.mapa__barra {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--linha);
+}
+
+.mapa__contexto {
+  flex: 1 1 140px;
+  font-size: 12.5px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--tinta-fraca);
+}
+
+.mapa__acoes {
+  display: flex;
+  gap: 8px;
+}
+
+.botao {
+  padding: 7px 12px;
+  font-size: 12.5px;
+  letter-spacing: 0.02em;
+  background: transparent;
+  border: 1px solid var(--linha-forte);
+  border-radius: var(--raio);
+  color: var(--tinta-media);
+}
+
+.botao:hover {
+  border-color: var(--tinta-media);
+  color: var(--tinta);
+}
+
+.botao[aria-pressed="true"] {
+  background: var(--acento);
+  border-color: var(--acento);
+  color: #fff;
+}
+
+/* alternância de andares */
+.andar {
+  display: flex;
+  gap: 0;
+  border: 1px solid var(--linha-forte);
+  border-radius: var(--raio);
+  overflow: hidden;
+}
+
+.andar__botao {
+  padding: 7px 14px;
+  font-size: 12.5px;
+  letter-spacing: 0.03em;
+  background: transparent;
+  border: 0;
+  color: var(--tinta-media);
+}
+
+.andar__botao + .andar__botao {
+  border-left: 1px solid var(--linha-forte);
+}
+
+.andar__botao[aria-pressed="true"] {
+  background: var(--tinta);
+  color: var(--papel-claro);
+}
+
+.mapa__moldura {
+  background: var(--papel);
+  overflow: auto;
+}
+
+.planta {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 78vh;
+  font-family: var(--sans);
+}
+
+.mapa__nota {
+  padding: 8px 14px;
+  font-size: 12px;
+  color: var(--tinta-fraca);
+  border-top: 1px solid var(--linha);
+}
+
+.mapa__nota:empty {
+  display: none;
+}
+
+/* elementos do desenho */
+.planta text {
+  pointer-events: none;
+  user-select: none;
+}
+
+.fundo {
+  fill: var(--papel);
+}
+
+.avenida {
+  fill: #e7e1d2;
+  stroke: var(--linha);
+  stroke-width: 1;
+}
+
+.avenida__texto {
+  fill: var(--tinta-fraca);
+  font-size: 13px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.area {
+  cursor: pointer;
+}
+
+.area__caixa {
+  transition: fill 0.12s ease, stroke 0.12s ease;
+}
+
+.area:hover .area__caixa {
+  fill-opacity: 0.85;
+}
+
+.area__titulo {
+  fill: var(--tinta);
+  font-size: 19px;
+  font-weight: 600;
+}
+
+.area__subtitulo {
+  fill: var(--tinta-fraca);
+  font-size: 13px;
+  letter-spacing: 0.03em;
+}
+
+/* tipos de área */
+.tipo-barracao .area__caixa {
+  fill: var(--barracao);
+  stroke: var(--barracao-linha);
+  stroke-width: 1.2;
+}
+
+.tipo-predio .area__caixa {
+  fill: var(--predio);
+  stroke: var(--predio-linha);
+  stroke-width: 1.2;
+}
+
+.tipo-quadra .area__caixa {
+  fill: var(--quadra);
+  stroke: var(--quadra-linha);
+  stroke-width: 1.2;
+}
+
+.tipo-externo .area__caixa {
+  fill: var(--externo);
+  stroke: var(--linha-forte);
+  stroke-width: 1;
+  stroke-dasharray: 4 4;
+}
+
+.tipo-entrada .area__caixa {
+  fill: var(--tinta);
+  stroke: var(--tinta);
+}
+
+.tipo-entrada .area__titulo {
+  fill: var(--papel-claro);
+  font-size: 13px;
+
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* referência sem clique */
+.area--referencia {
+  cursor: default;
+}
+
+.area--referencia:hover .area__caixa {
+  fill-opacity: 1;
+}
+
+/* espaços da feira */
+.espaco {
+  cursor: pointer;
+}
+
+.espaco__caixa {
+  fill: var(--papel-claro);
+  stroke: var(--linha-forte);
+  stroke-width: 1;
+  transition: fill 0.12s ease, stroke 0.12s ease;
+}
+
+.espaco:hover .espaco__caixa {
+  fill: #efe7d6;
+  stroke: var(--tinta-media);
+}
+
+.espaco__rotulo {
+  fill: var(--tinta-media);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.espaco__projeto {
+  
+  font-size: 9px;
+  text-anchor: middle;
+  text-anchor: middle;
+  dominant-baseline: middle;
+  pointer-events: none;
+}
+
+
+
+/* espaços ocupados pela feira (têm nome de projeto cadastrado) */
+.espaco--ocupado .espaco__caixa {
+  fill: #fff;
+  stroke: var(--tinta-media);
+}
+
+.espaco--ocupado .espaco__projeto {
+  fill: var(--tinta);
+  font-style: normal;
+}
+
+/* espaço não participante (laboratórios do térreo, banheiros, escada...) */
+.espaco--servico {
+  cursor: pointer;
+}
+
+.espaco--servico .espaco__caixa {
+  fill: #ece7dc;
+  stroke: var(--linha);
+  stroke-dasharray: 3 3;
+}
+
+.espaco--servico .espaco__rotulo {
+  fill: var(--tinta-fraca);
+  font-weight: 400;
+}
+
+/* estados de interação */
+.espaco--selecionado .espaco__caixa {
+  stroke: var(--acento);
+  stroke-width: 2.4;
+  fill: #fbeee9;
+}
+
+.espaco--selecionado .espaco__rotulo {
+  fill: var(--acento-escuro);
+}
+
+.espaco--achado .espaco__caixa {
+  stroke: var(--acento);
+  stroke-width: 2.4;
+}
+
+.espaco--achado {
+  animation: pulsar 1.5s ease-in-out infinite;
+}
+
+@keyframes pulsar {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.55; }
+}
+
+.planta__parede {
+  fill: none;
+  stroke: var(--tinta-media);
+  stroke-width: 1.6;
+}
+
+.planta__titulo-andar {
+  fill: var(--tinta-fraca);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.planta__seta {
+  fill: var(--tinta);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.planta__seta-linha {
+  fill: none;
+  stroke: var(--tinta);
+  stroke-width: 1.6;
+}
+
+.planta__zona {
+  fill: #e6e0d2;
+  stroke: var(--linha);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+
+.planta__zona-texto {
+  fill: var(--tinta-fraca);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* rota (só aparece se estiver configurada em js/app.js) */
+.rota {
+  fill: none;
+  stroke: var(--acento);
+  stroke-width: 2.4;
+  stroke-dasharray: 7 6;
+  stroke-linecap: round;
+}
+
+/* marcador do GPS */
+.gps {
+  fill: var(--acento);
+  stroke: #fff;
+  stroke-width: 2;
+}
+
+.gps__precisao {
+  fill: var(--acento);
+  fill-opacity: 0.14;
+  stroke: var(--acento);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+
+/* 6. Legenda ------------------------------------------------------------- */
+.legenda {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  margin: 0;
+  padding: 12px 14px;
+  list-style: none;
+  border-top: 1px solid var(--linha);
+}
+
+.legenda li {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  color: var(--tinta-media);
+}
+
+.legenda__cor {
+  width: 12px;
+  height: 12px;
+  border-radius: 1px;
+  border: 1px solid var(--linha-forte);
+}
+
+.legenda__cor--barracao { background: var(--barracao); border-color: var(--barracao-linha); }
+.legenda__cor--predio { background: var(--predio); border-color: var(--predio-linha); }
+.legenda__cor--quadra { background: var(--quadra); border-color: var(--quadra-linha); }
+.legenda__cor--externo { background: var(--externo); }
+.legenda__cor--entrada { background: var(--tinta); }
+.legenda__cor--livre { background: var(--papel-claro); border-color: var(--linha-forte); }
+.legenda__cor--projeto { background: #fff; border-color: var(--tinta-media); }
+.legenda__cor--servico { background: #ece7dc; border-style: dashed; }
+
+/* 7. Painel de informações ---------------------------------------------- */
+.painel {
+  background: var(--papel-claro);
+  border: 1px solid var(--linha-forte);
+  border-radius: var(--raio);
+  padding: 18px;
+  align-self: start;
+}
+
+.painel__sobre {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--tinta-fraca);
+}
+
+.painel__titulo {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 23px;
+  line-height: 1.2;
+  margin-top: 6px;
+}
+
+.painel__titulo--vazio {
+  color: var(--tinta-fraca);
+  font-style: italic;
+}
+
+.painel__texto {
+  margin-top: 10px;
+  font-size: 14.5px;
+  color: var(--tinta-media);
+}
+
+.painel__texto--fraco {
+  color: var(--tinta-fraca);
+}
+
+.ficha {
+  margin-top: 16px;
+  border-top: 1px solid var(--linha);
+}
+
+.ficha__linha {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 10px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--linha);
+  font-size: 13.5px;
+}
+
+.ficha__rotulo {
+  color: var(--tinta-fraca);
+  letter-spacing: 0.03em;
+}
+
+.ficha__valor {
+  color: var(--tinta);
+}
+
+.ficha__valor--vazio {
+  color: var(--tinta-fraca);
+  font-style: italic;
+}
+
+.painel__nota {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--linha);
+  font-size: 12.5px;
+  color: var(--tinta-fraca);
+}
+
+.painel__contagem {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  margin-top: 14px;
+  font-size: 12.5px;
+  color: var(--tinta-media);
+}
+
+.painel__contagem strong {
+  font-weight: 600;
+}
+
+/* 8. Rodapé -------------------------------------------------------------- */
+.rodape {
+  max-width: var(--largura);
+  margin: 0 auto;
+  padding: 0 18px 32px;
+  font-size: 12px;
+  color: var(--tinta-fraca);
+}
+
+/* 9. Telas maiores ------------------------------------------------------- */
+@media (min-width: 900px) {
+  .cabecalho__interno {
+    grid-template-columns: 1fr 380px;
+    align-items: end;
+    padding: 18px 24px 14px;
+  }
+
+  .marca__titulo {
+    font-size: 30px;
+  }
+
+  .pagina {
+    padding: 22px 24px 56px;
+  }
+
+  .conteudo {
+    grid-template-columns: minmax(0, 1fr) 340px;
+    align-items: start;
+    gap: 22px;
+  }
+
+  .mapa__barra {
+    padding: 12px 16px;
+  }
+
+  .planta {
+    max-height: none;
+  }
+
+  .rodape {
+    padding: 0 24px 44px;
+  }
+}

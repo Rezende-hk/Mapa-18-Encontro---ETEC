@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Feira de Projetos — Etec de Vargem Grande do Sul</title>
+  <meta name="description" content="Mapa interativo da feira de projetos da Etec de Vargem Grande do Sul: barracão, prédio principal e quadra.">
+  <link rel="icon" href="assets/icone.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="cabecalho">
+    <div class="cabecalho__interno">
+      <div class="marca">
+        <p class="marca__sobre" id="nome-escola">Etec de Vargem Grande do Sul</p>
+        <h1 class="marca__titulo" id="titulo-feira">Feira de Projetos</h1>
+      </div>
+
+      <div class="busca" id="busca">
+        <label class="busca__rotulo" for="campo-busca">Buscar</label>
+        <input class="busca__campo" id="campo-busca" type="search" autocomplete="off"
+               placeholder="Projeto, sala ou local">
+        <ul class="busca__resultados" id="resultados" hidden></ul>
+      </div>
+    </div>
+  </header>
+
+  <main class="pagina">
+
+    <nav class="trilha" id="trilha" aria-label="Você está em"></nav>
+
+    <div class="conteudo">
+
+      <section class="mapa" aria-label="Mapa da feira">
+        <div class="mapa__barra">
+          <div class="andar" id="andar" hidden>
+            <button class="andar__botao" id="andar-terreo" data-andar="terreo">Térreo</button>
+            <button class="andar__botao" id="andar-segundo" data-andar="segundo-andar">Segundo andar</button>
+          </div>
+
+          <p class="mapa__contexto" id="contexto"></p>
+
+          <div class="mapa__acoes">
+            <button class="botao" id="botao-voltar" hidden>Visão geral</button>
+            <button class="botao" id="botao-gps" hidden>Minha localização</button>
+          </div>
+        </div>
+
+        <div class="mapa__moldura">
+          <svg class="planta" id="mapa" viewBox="0 0 900 620" role="img"
+               aria-label="Planta do campus com áreas clicáveis"></svg>
+        </div>
+
+        <p class="mapa__nota" id="nota-mapa"></p>
+
+        <ul class="legenda" id="legenda"></ul>
+      </section>
+
+      <aside class="painel" id="painel" aria-live="polite"></aside>
+
+    </div>
+  </main>
+
+  <footer class="rodape">
+    <p>Planta esquemática. Posições, salas e laboratórios podem ser ajustados em <code>js/app.js</code>.</p>
+  </footer>
+
+  <script src="js/app.js" defer></script>
+</body>
+</html>
